@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+</head>
+<body>
+
+<script>
+function hash(attributes, secret) {
+const data = attributes
+.map((_) => _.name + _.value)
+.sort()
+.join("")
+.concat(secret);
+return CryptoJS.SHA256(data).toString(CryptoJS.enc.Hex);
+}
+
+const userData = [
+{ name: "Имя", value: "Person-Livetex-User" },
+{ name: "City", value: "Livetex-City" },
+];
+const userHash = hash(userData, "c94daabb-854f-4284-886b-7bfe8d3d1a9d");
+console.log("done", userHash);
+</script>
+<script type='text/javascript'>
+    function onConversationStarted(_) {
+        const personId = "random-person-id-aa-bb-cc";
+        const attributes = [
+            { name: "Имя", value: "Person-Livetex-User" },
+            { name: "City", value: "Livetex-City" },
+        ];
+        const hash =
+            "a366be4a9c23aa73b28ac99c723644e58161646ad888d370979c9f1804ac7e0e";
+
+        const onSuccess = (_) => console.info("success");
+        const onFailure = (e) => console.error(`failure: ${e.message}`);
+        console.log("personId", personId)
+        console.log("attributes", attributes)
+        console.log("hash", hash)
+        LiveTex.setAttributes(personId, attributes, hash, onSuccess, onFailure);
+    }
+</script>
+<script type='text/javascript'>    /* build:::7 */
+var liveTex = true,
+    liveTexID = 177746,
+    liveTex_object = true;
+(function () {
+    var lt = document.createElement('script');
+    lt.type = 'text/javascript';
+    lt.async = true;
+    lt.src = 'https://cs15.livetex.ru/js/client.js';
+    var sc = document.getElementsByTagName('script')[0];
+    if (sc) sc.parentNode.insertBefore(lt, sc);
+    else document.documentElement.firstChild.appendChild(lt);
+})();
+</script>
+<script type='text/javascript'>
+    var LiveTex = {
+        onLiveTexReady: function () {
+            const descriptor = LiveTex.addEventListener(
+                LiveTex.Event.CONVERSATION_STARTED,
+                onConversationStarted
+            );
+        },
+    };
+</script>
+</body>
+</html>
