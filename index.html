@@ -29,25 +29,19 @@ console.log("done", userHash);
 </script>
 <script type='text/javascript'>
     function onConversationStarted(_) {
-        const personId = "random-person-id-aa-bb-cc";
-        const attributes = [
-            { name: "Имя", value: "Person-Livetex-User" },
-            { name: "City", value: "Livetex-City" },
-        ];
-        const hash =
-            "a366be4a9c23aa73b28ac99c723644e58161646ad888d370979c9f1804ac7e0e";
-
-        const onSuccess = (_) => console.info("success");
-        const onFailure = (e) => console.error(`failure: ${e.message}`);
-        console.log("personId", personId)
-        console.log("attributes", attributes)
-        console.log("hash", hash)
-        LiveTex.setAttributes(personId, attributes, hash, onSuccess, onFailure);
+        LiveTex.setVisitorAttributes(
+  function() { console.log('атрибуты сохранены'); },
+  function(error) { console.log('Ошибка: ' + error); },
+  {
+    name: { name: 'Тест имени', is_editable: true },
+    contacts: []
+  }
+);
     }
 </script>
 <script type='text/javascript'>    /* build:::7 */
 var liveTex = true,
-    liveTexID = 177746,
+    liveTexID = 179445,
     liveTex_object = true;
 (function () {
     var lt = document.createElement('script');
