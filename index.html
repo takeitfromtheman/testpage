@@ -29,6 +29,7 @@ console.log("done", userHash);
 </script>
 <script type='text/javascript'>
     function onConversationStarted(_) {
+        console.log('Событие начала обращения')
         LiveTex.setVisitorAttributes(
   function() { console.log('атрибуты сохранены'); },
   function(error) { console.log('Ошибка: ' + error); },
