@@ -9,24 +9,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
 </head>
 <body>
-
-<script>
-function hash(attributes, secret) {
-const data = attributes
-.map((_) => _.name + _.value)
-.sort()
-.join("")
-.concat(secret);
-return CryptoJS.SHA256(data).toString(CryptoJS.enc.Hex);
-}
-
-const userData = [
-{ name: "Имя", value: "Person-Livetex-User" },
-{ name: "City", value: "Livetex-City" },
-];
-const userHash = hash(userData, "c94daabb-854f-4284-886b-7bfe8d3d1a9d");
-console.log("done", userHash);
-</script>
 <script type='text/javascript'>
     function onConversationStarted(_) {
         console.log('Событие начала обращения')
