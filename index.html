@@ -10,16 +10,16 @@
 </head>
 <body>
 <script type='text/javascript'>
-    function onConversationStarted(_) {
+    function onConversationAction(_) {
         console.log('Событие начала обращения')
         LiveTex.setVisitorAttributes(
-  function() { console.log('атрибуты сохранены'); },
-  function(error) { console.log('Ошибка: ' + error); },
-  {
-    name: { name: 'Тест имени', is_editable: true },
-    contacts: []
-  }
-);
+            function() { console.log('атрибуты сохранены'); },
+            function(error) { console.log('Ошибка: ' + error); },
+            {
+                name: { name: 'Тест имени', is_editable: true },
+                contacts: []
+            }
+        );
     }
 </script>
 <script type='text/javascript'>    /* build:::7 */
@@ -39,9 +39,13 @@ var liveTex = true,
 <script type='text/javascript'>
     var LiveTex = {
         onLiveTexReady: function () {
-            const descriptor = LiveTex.addEventListener(
+            const desc1 = LiveTex.addEventListener(
                 LiveTex.Event.CONVERSATION_STARTED,
-                onConversationStarted
+                onConversationAction
+            );
+            const desc2 = LiveTex.addEventListener(
+                LiveTex.Event.CONVERSATION_CLOSED,
+                onConversationAction
             );
         },
     };
