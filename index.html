@@ -10,13 +10,24 @@
 </head>
 <body>
 <script type='text/javascript'>
-    function onConversationAction(_) {
-        console.log('Событие в обращении')
+    function onConversationStarted(_) {
+        console.log('Обращение создано')
         LiveTex.setVisitorAttributes(
-            function() { console.log('атрибуты сохранены'); },
+            function() { console.log('атрибуты сохранены при начале обращения'); },
             function(error) { console.log('Ошибка: ' + error); },
             {
-                name: { name: 'Тест имени', is_editable: true },
+                name: { name: 'Имя при начале обращения', is_editable: true },
+                contacts: []
+            }
+        );
+    }
+    function onConversationClosed(_) {
+        console.log('Обращение завершено')
+        LiveTex.setVisitorAttributes(
+            function() { console.log('атрибуты сохранены при завершении обращения'); },
+            function(error) { console.log('Ошибка: ' + error); },
+            {
+                name: { name: 'Имя при завершении обращения', is_editable: true },
                 contacts: []
             }
         );
@@ -41,11 +52,11 @@ var liveTex = true,
         onLiveTexReady: function () {
             const desc1 = LiveTex.addEventListener(
                 LiveTex.Event.CONVERSATION_STARTED,
-                onConversationAction
+                onConversationStarted
             );
             const desc2 = LiveTex.addEventListener(
                 LiveTex.Event.CONVERSATION_CLOSED,
-                onConversationAction
+                onConversationClosed
             );
         },
     };
