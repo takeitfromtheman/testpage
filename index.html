@@ -9,57 +9,36 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
 </head>
 <body>
-<script type='text/javascript'>
-    function onConversationStarted(_) {
-        console.log('Обращение создано')
-        LiveTex.setVisitorAttributes(
-            function() { console.log('атрибуты сохранены при начале обращения'); },
-            function(error) { console.log('Ошибка: ' + error); },
-            {
-                name: { name: 'Имя при начале обращения', is_editable: true },
-                contacts: []
-            }
-        );
-    }
-    function onConversationClosed(_) {
-        console.log('Обращение завершено')
-        LiveTex.setVisitorAttributes(
-            function() { console.log('атрибуты сохранены при завершении обращения'); },
-            function(error) { console.log('Ошибка: ' + error); },
-            {
-                name: { name: 'Имя при завершении обращения', is_editable: true },
-                contacts: []
-            }
-        );
-    }
+<script>
+    window.liveTex = !0;
+    window.liveTexID = 182283;
+    window.liveTex_object = !0;
+    (function() {
+            var a = document.createElement("script");
+            a.type = "text/javascript";
+            a.async = !0;
+            a.src = "//cs15.livetex.ru/js/client.js";
+            var b = document.getElementsByTagName("script")[0];
+            b ? b.parentNode.insertBefore(a, b) : document.documentElement.firstChild.appendChild(a)
+        }
+    )();
 </script>
-<script type='text/javascript'>    /* build:::7 */
-var liveTex = true,
-    liveTexID = 177746,
-    liveTex_object = true;
-(function () {
-    var lt = document.createElement('script');
-    lt.type = 'text/javascript';
-    lt.async = true;
-    lt.src = 'https://cs15.livetex.ru/js/client.js';
-    var sc = document.getElementsByTagName('script')[0];
-    if (sc) sc.parentNode.insertBefore(lt, sc);
-    else document.documentElement.firstChild.appendChild(lt);
-})();
-</script>
-<script type='text/javascript'>
-    var LiveTex = {
-        onLiveTexReady: function () {
-            const desc1 = LiveTex.addEventListener(
-                LiveTex.Event.CONVERSATION_STARTED,
-                onConversationStarted
-            );
-            const desc2 = LiveTex.addEventListener(
-                LiveTex.Event.CONVERSATION_CLOSED,
-                onConversationClosed
-            );
-        },
-    };
+<script>
+function hash(attributes, secret) {
+const data = attributes
+.map((_) => _.name + _.value)
+.sort()
+.join("")
+.concat(secret);
+return CryptoJS.SHA256(data).toString(CryptoJS.enc.Hex);
+}
+
+const userData = [];
+
+const token = "c94daabb-854f-4284-886b-7bfe8d3d1a9d";
+
+const userHash = hash(userData, token);
+console.log(`HASH: ${userHash}`);
 </script>
 </body>
 </html>
