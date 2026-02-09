@@ -18,7 +18,7 @@
     onLiveTexReady: function() {
         function onConversationStarted(_) {
     const personId = 'test_customVisitorToken'
-    const attributes = []
+    const attributes = [{}]
     const hash = 'c3fcaa5f66c438a9b3a2ab8034df10e351cdf30a2c948fd5d50c386e89a8487d'
 
     const onSuccess = (_) => console.info('success')
@@ -50,7 +50,7 @@ const data = attributes
 return CryptoJS.SHA256(data).toString(CryptoJS.enc.Hex);
 }
 
-const userData = [];
+const userData = [{}];
 
 const token = "1b30063c-595c-47f9-b623-7b8a18332cc2";
 
