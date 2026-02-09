@@ -13,6 +13,25 @@
     window.liveTex = !0;
     window.liveTexID = 182283;
     window.liveTex_object = !0;
+    
+    var LiveTex = {
+    onLiveTexReady: function() {
+        function onConversationStarted(_) {
+    const personId = 'test_customVisitorToken'
+    const attributes = [
+      {name: 'Авторизован', value: 'Да'}
+    ]
+    const hash = '1a5a68d5e41023a4f05bd7236c1649c493d9b313a2ebeacf42599bee4d39ddc3'
+
+    const onSuccess = (_) => console.info('success')
+    const onFailure = (e) => console.error(`failure: ${e.message}`)
+
+    LiveTex.setAttributes(personId, attributes, hash, onSuccess, onFailure)
+  }
+    const desc1 = LiveTex.addEventListener( LiveTex.Event.CONVERSATION_STARTED, onConversationStarted )
+    }
+};
+    
     (function() {
             var a = document.createElement("script");
             a.type = "text/javascript";
@@ -42,20 +61,6 @@ const token = "1b30063c-595c-47f9-b623-7b8a18332cc2";
 const userHash = hash(userData, token);
 console.log(`HASH: ${userHash}`);
 </script>
-<script>
-  function onConversationStarted(_) {
-    const personId = 'test_customVisitorToken'
-    const attributes = [
-      {name: 'Авторизован', value: 'Да'}
-    ]
-    const hash = '1a5a68d5e41023a4f05bd7236c1649c493d9b313a2ebeacf42599bee4d39ddc3'
 
-    const onSuccess = (_) => console.info('success')
-    const onFailure = (e) => console.error(`failure: ${e.message}`)
-
-    LiveTex.setAttributes(personId, attributes, hash, onSuccess, onFailure)
-  }
-    const desc1 = LiveTex.addEventListener( LiveTex.Event.CONVERSATION_STARTED, onConversationStarted )
-</script>
 </body>
 </html>
